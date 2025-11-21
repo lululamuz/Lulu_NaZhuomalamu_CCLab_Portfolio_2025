@@ -2,7 +2,7 @@ function setup() {
 
   // create the canvas
 
-  canvas = createCanvas(400, 400);
+  canvas = createCanvas(800, 500);
 
   // attach the canvas to the div in your HTML
 
