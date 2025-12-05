@@ -1,137 +1,116 @@
-
-/* Global styles */
-
-* {
-
-  box-sizing: border-box;
-
-}
-
-
+/* 全局 */
 body {
-
   margin: 0;
-
-  padding: 40px;
-
-  font-family: "Courier New", "Lucida Console", monospace; /* typewriter vibe */
-
-  background-color: #f4ecff; /* light purple */
-
-  color: #111;
-
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
+  background: #fafafa;
+  color: #222;
 }
 
-
-/* Page layout */
-
-main {
-
-  max-width: 900px;
-
-  margin: 0 auto;
-
-}
-
-
-/* Navigation */
-
-nav ul {
-
-  list-style: none;
-
-  padding: 0;
-
-  margin: 0 0 20px 0;
-
+/* 顶部导航 */
+.site-header {
   display: flex;
-
-  gap: 16px;
-
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  border-bottom: 1px solid #ddd;
+  background: #ffffffcc;
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
 }
 
+.logo {
+  font-weight: 600;
+  font-size: 18px;
+}
 
-nav a {
-
+.main-nav a {
+  margin-left: 16px;
   text-decoration: none;
-
-  color: #333;
-
-  border-bottom: 2px solid transparent;
-
-  padding-bottom: 2px;
-
+  color: #555;
+  font-size: 14px;
 }
 
-
-nav a:hover {
-
-  border-bottom-color: #a98fd3; /* purple accent */
-
+.main-nav a:hover {
+  color: #000;
 }
 
-
-/* Headings */
-
-h1 {
-
-  font-size: 2.4rem;
-
-  margin-bottom: 10px;
-
-  color: #111;
-
+.main-nav a.active {
+  font-weight: 600;
+  color: #000;
 }
 
+/* 内容区 */
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px 16px 64px;
+}
 
-h2 {
-
-  font-size: 1.4rem;
-
-  margin-top: 30px;
-
+/* Hero */
+.hero h1 {
+  font-size: 32px;
   margin-bottom: 8px;
-
-  color: #333;
-
 }
 
-
-/* Paragraphs */
-
-p {
-
-  line-height: 1.5;
-
+.hero p {
+  max-width: 640px;
+  color: #555;
 }
 
-
-/* Project iframe */
-
-iframe {
-
-  width: 100%;           /* fills the content width */
-
-  max-width: 800px;      /* don’t get too huge on big screens */
-
-  height: 500px;         /* taller so more of the sketch shows */
-
-  border: 2px solid #333;
-
-  border-radius: 4px;
-
+/* Project 列表 */
+.projects h2 {
+  margin-top: 40px;
+  margin-bottom: 16px;
 }
 
+.project-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
 
-/* Optional: keep content off the very edges on mobile */
-
-@media (max-width: 600px) {
-
-  body {
-
-    padding: 20px;
-
+@media (min-width: 768px) {
+  .project-list {
+    grid-template-columns: 1fr 1fr;
   }
-
 }
 
+.project-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.project-card h3 {
+  margin-top: 0;
+  margin-bottom: 4px;
+}
+
+.project-card a {
+  text-decoration: none;
+  color: #111;
+}
+
+.project-card a:hover {
+  text-decoration: underline;
+}
+
+.project-tag {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+  margin-bottom: 8px;
+}
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 12px;
+  color: #777;
+  border-top: 1px solid #ddd;
+}
