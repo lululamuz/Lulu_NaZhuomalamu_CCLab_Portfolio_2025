@@ -8,8 +8,17 @@ let cursor = {
 
 let diameter2 = 20;
 
-function setup() {
-  createCanvas(600, 600);
+  function setup() {
+
+  // create the canvas
+
+  canvas = createCanvas(600, 600);
+
+  // attach the canvas to the div in your HTML
+
+  canvas.parent("sketch-container");
+}
+
 }
 
 function draw() {
