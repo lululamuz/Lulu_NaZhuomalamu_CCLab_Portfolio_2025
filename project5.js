@@ -19,8 +19,6 @@ let diameter2 = 20;
   canvas.parent("sketch-container");
 }
 
-}
-
 function draw() {
   background(255);
   
