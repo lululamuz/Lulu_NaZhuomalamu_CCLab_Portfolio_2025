@@ -33,7 +33,15 @@ const BOTTOM_ROW_EXTRA = 14;   // 第二排（Fri–Sun）在正常行距基础�
 let rowYBottom = rowYTop + BOX_SIZE + ROW_GAP + BOTTOM_ROW_EXTRA;
 
 function setup() {
-  createCanvas(600, 600);
+
+  // create the canvas
+
+  canvas = createCanvas(600, 600);
+
+  // attach the canvas to the div in your HTML
+
+  canvas.parent("sketch-container");
+
   textAlign(CENTER, CENTER);
   textFont('Helvetica');
   noStroke();
