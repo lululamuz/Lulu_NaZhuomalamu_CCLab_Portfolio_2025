@@ -7,10 +7,7 @@ function setup() {
   // attach the canvas to the div in your HTML
 
   canvas.parent("sketch-container");
-}
 
-function setup() {
-  createCanvas(600, 600);
   angleMode(DEGREES); 
 }
 
