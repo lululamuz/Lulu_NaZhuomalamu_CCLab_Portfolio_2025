@@ -16,7 +16,15 @@ let platforms = [];
 let goal;
 
 function setup() {
-  createCanvas(600, 400);
+
+  // create the canvas
+
+  canvas = createCanvas(600, 400);
+
+  // attach the canvas to the div in your HTML
+
+  canvas.parent("sketch-container");
+
   player = new Player(80, 300);
 }
 
