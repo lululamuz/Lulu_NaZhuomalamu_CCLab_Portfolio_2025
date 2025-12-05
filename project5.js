@@ -17,7 +17,6 @@ let diameter2 = 20;
   // attach the canvas to the div in your HTML
 
   canvas.parent("sketch-container");
-}
 
 function draw() {
   background(255);
