@@ -10,7 +10,7 @@ function setup() {
 
   angleMode(DEGREES); 
 }
-
+function draw(){
   background(255, 255, 102);
   noStroke(); 
   
