@@ -105,10 +105,5 @@ function draw() {
     ellipse(600, 397, 100, 35);
      fill(255, 204, 102); //pasta 
     ellipse(600, 388, 90, 35);
-  
-  //show coordinates with mouse
-  fill(0);
-  text("(" + mouseX + ", " + mouseY + ")", mouseX, mouseY);
-  stroke(0);
 
 }
