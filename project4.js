@@ -131,9 +131,4 @@ function draw() {
   line(177, 501, 166, 500);
   endShape();
 
-  push();
-  fill(0);
-  text("(" + mouseX + ", " + mouseY + ")", mouseX, mouseY);
-  stroke(0);
-  pop();
 }
