@@ -91,21 +91,20 @@ body {
 
 /* PROJECTS: stretch horizontally */
 .projects-title {
-  font-size: 16vw;
-  line-height: 0.9;
+  font-size: 13vw;          /* 降低一点，避免整体太大 */
+  line-height: 0.95;
   letter-spacing: -0.02em;
 
-  position: relative;
-  left: 50%;
-  width: 100vw;
-
-  transform: translateX(-50%) scaleX(2.2) scaleY(0.8);
-  transform-origin: center;
-
+  display: block;
+  width: 100%;
   text-align: center;
+
+  transform: scaleX(1.75) scaleY(0.78);  /* 把 2.2 降下来 */
+  transform-origin: center;
 
   margin: 0 auto 60px auto;
 }
+
 
 
 
