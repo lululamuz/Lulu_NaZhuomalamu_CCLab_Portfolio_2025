@@ -1,62 +1,65 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clock Dogs – Lulu Portfolio</title>
+
   <link rel="stylesheet" href="style.css" />
-  
+
   <!-- p5.js libraries -->
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
-
-  <title>Experimental Clock – My Portfolio</title>
-
 </head>
 
-<body>
+<body class="project-page">
 
-  <nav>
+  <div class="project-wrap">
 
-    <ul>
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="index.html#projects">← Back</a>
 
-      <li><a href="index.html">Home</a></li>
+      <div class="project-nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="extra.html">Extra</a>
+      </div>
+    </nav>
 
-      <li><a href="about.html">About</a></li>
+    <header class="project-header">
+      <h1 class="project-title">Clock Dogs</h1>
+      <p class="project-meta">
+        Project 3 · p5.js · Time-based interaction · Animation
+      </p>
+    </header>
 
-      <li><a href="extra.html">Extra</a></li>
+    <section class="project-section">
+      <h2 class="project-h2">p5.js Sketch</h2>
 
-    </ul>
+      <div class="project-media">
+        <!-- Canvas will appear here -->
+        <div id="sketch-container"></div>
+      </div>
+    </section>
 
-  </nav>
+    <section class="project-section">
+      <h2 class="project-h2">Description</h2>
 
+      <p>
+        Project 3 explores time-based interaction using p5.js.
+        The animation responds to the current second of the clock.
+      </p>
 
-  <h1>Experimental Clock</h1>
+      <p>
+        The dogs alternate between open and closed eyes depending on
+        the rotation of the second hand. The clock visually connects
+        real-world time to character behavior.
+      </p>
+    </section>
 
-  <h2>p5.js Sketch</h2>
- <!-- Canvas will appear here -->
+  </div>
 
-  <div id="sketch-container"></div>
-
-  <h2>Description</h2>
-
-  <p>
-
-    Project 3: Experimental Clock
-    Assignment 3 explores the development of an experimental clock. 
-    This clock functions in ways that ordinary clocks cannot. 
-    To think of time expansively and alternatively, moving beyond conventional timekeeping units. 
-    
-  </p>
-<main>
-    <!-- Your p5 sketch file -->
-  
-    <script src="project3.js"></script>
-  
+  <!-- Your p5 sketch file -->
+  <script src="project3.js"></script>
 </body>
-
 </html>
