@@ -120,16 +120,11 @@ h2 {
   overflow: hidden;
   background: #000;
 }
-
-.about-photo {
+.about-image {
   width: 100vw;
   height: 100vh;
-
-  /* 把这里的文件名改成你上传的照片文件名 */
-  background-image: url("about.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  object-fit: cover;
+  display: block;
 }
 
 /* tiny back button */
