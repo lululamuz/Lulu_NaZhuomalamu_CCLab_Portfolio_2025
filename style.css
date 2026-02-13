@@ -159,7 +159,11 @@ h2 {
   padding: 60px 40px;
   background-color: #f4ecff;
   font-family: 'Inter', sans-serif;
+
+  height: auto;          /* 关键：不要 100vh */
+  overflow: auto;        /* 关键：允许滚动 */
 }
+
 
 .about-container {
   max-width: 1000px;
@@ -168,11 +172,13 @@ h2 {
 
 .about-image {
   width: 100%;
-  max-height: 90vh;
+  height: auto;            /* 关键：让高度跟着图片比例走 */
+  max-height: none;        /* 关键：不要限制高度 */
   object-fit: contain;
   display: block;
-  margin-bottom: 80px;
+  margin: 0 auto 60px auto;
 }
+
 
 .about-text {
   max-width: 700px;
