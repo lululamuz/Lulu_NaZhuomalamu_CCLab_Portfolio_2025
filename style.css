@@ -117,15 +117,22 @@ h2 {
   margin: 0;
   padding: 0;
   height: 100vh;
-  overflow: hidden;
-  background: #000;
+
+  background-color: #f4ecff;  /* 原来的背景色 */
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .about-image {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
+  max-width: 90vw;
+  max-height: 90vh;
+
+  object-fit: contain;  /* 不裁切 */
   display: block;
 }
+
 
 /* tiny back button */
 .back-home {
