@@ -1,81 +1,60 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
-
-  <title>My Portfolio</title>
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lulu Portfolio</title>
   <link rel="stylesheet" href="style.css" />
-
 </head>
 
 <body>
-  
-  <section id="hero">
-  <h1>LULU</h1>
-  <div class="arrow">↓</div>
-</section>
 
+  <!-- HERO (Full screen) -->
+  <section id="hero" aria-label="Hero">
+    <h1 class="hero-title">LULU</h1>
+    <a class="arrow" href="#projects" aria-label="Scroll to projects">↓</a>
+  </section>
 
-  <h1>My Portfolio</h1>
-  
-  <section id="hero">
-  <h1 class="hero-title">LULU</h1>
-  <a class="arrow" href="#projects" aria-label="Scroll to projects">↓</a>
-</section>
+  <!-- CONTENT (Shows after scrolling) -->
+  <main id="content">
 
+    <nav class="top-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="extra.html">Extra</a></li>
+      </ul>
+    </nav>
 
-<main>
-  <nav>
+    <section class="projects-section" aria-label="Projects">
+      <h2 id="projects">Projects</h2>
 
-    <ul>
+      <div class="two-column">
+        <!-- CC Lab -->
+        <section class="column">
+          <h3>CC Lab</h3>
+          <ul class="project-list">
+            <li><a href="project1.html">Project 1</a></li>
+            <li><a href="project2.html">Project 2</a></li>
+            <li><a href="project3.html">Project 3</a></li>
+            <li><a href="project4.html">Project 4</a></li>
+            <li><a href="project5.html">Project 5</a></li>
+            <li><a href="project6.html">Project 6</a></li>
+            <li><a href="project7.html">Project 7</a></li>
+          </ul>
+        </section>
 
-      <li><a href="index.html">Home</a></li>
+        <!-- Advanced CC Lab -->
+        <section class="column">
+          <h3>Advanced CC Lab</h3>
+          <ul class="project-list">
+            <li><span class="placeholder">Coming soon</span></li>
+          </ul>
+        </section>
+      </div>
+    </section>
 
-      <li><a href="about.html">About</a></li>
-
-      <li><a href="extra.html">Extra</a></li>
-
-    </ul>
-
-  </nav>
-
-
- <h2 id="projects">Projects</h2>
-
-
-  <ul>
-
-    <li><a href="project1.html">Project 1</a></li>
-
-    <li><a href="project2.html">Project 2</a></li>
-
-    <li><a href="project3.html">Project 3</a></li>
-
-    <li><a href="project4.html">Project 4</a></li>
-
-    <li><a href="project5.html">Project 5</a></li>
-
-    <li><a href="project6.html">Project 6</a></li>
-
-    <li><a href="project7.html">Project 7</a></li>
-
-  </ul>
-
-
-  <p>
-
-    This is the home page for my portfolio. Use the links above to explore my projects and learn more about me.
-
-  </p>
-
-  <main>
+  </main>
 
 </body>
-
 </html>
-
-
