@@ -8,18 +8,19 @@
 
 
 body {
-
   margin: 0;
-
-  padding: 40px;
-
-  font-family: "Courier New", "Lucida Console", monospace; /* typewriter vibe */
-
-  background-color: #f4ecff; /* light purple */
-
+  padding: 0;
+  font-family: "Courier New", "Lucida Console", monospace;
+  background-color: #f4ecff;
   color: #111;
-
 }
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
 
 
 /* Page layout */
