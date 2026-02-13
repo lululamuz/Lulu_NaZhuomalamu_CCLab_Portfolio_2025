@@ -91,12 +91,21 @@ body {
 
 /* PROJECTS: stretch horizontally */
 .projects-title {
-  font-size: 14vw;
+  font-size: 16vw;
   line-height: 0.9;
-  letter-spacing: 0.02em;
-  transform: scaleX(1.7) scaleY(0.75);
-  transform-origin: left center;
+  letter-spacing: -0.02em;
+
+  transform: scaleX(2.2) scaleY(0.65);
+  transform-origin: center;
+
+  text-align: center;
+  width: 100%;
+  display: block;
+
+  margin: 0 auto 60px auto;
 }
+
+
 
 /* ===== Projects Layout ===== */
 .two-column {
