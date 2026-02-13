@@ -1,57 +1,52 @@
+let canvas;
+
 function setup() {
-
   // create the canvas
-
   canvas = createCanvas(400, 600);
 
   // attach the canvas to the div in your HTML
-
   canvas.parent("sketch-container");
 }
 
 function draw() {
   background(153, 230, 255);
 
-  //head
+  // head
   ellipse(200, 120, 120, 130);
-  
-  //left eye
+
+  // left eye
   stroke(40);
   beginShape();
   vertex(164, 97);
   quadraticVertex(178, 90, 191, 92);
-    quadraticVertex(177, 96, 164, 103);
-    quadraticVertex(177, 99, 191, 99);
-  line(177, 501, 166, 500);
+  quadraticVertex(177, 96, 164, 103);
+  quadraticVertex(177, 99, 191, 99);
   endShape();
-  
-   //right eye
+
+  // right eye
   stroke(40);
   beginShape();
   vertex(213, 89);
   quadraticVertex(227, 85, 237, 88);
-    quadraticVertex(225, 90, 214, 98);
-      quadraticVertex(229, 92, 235, 94);
-  line(177, 501, 166, 500);
+  quadraticVertex(225, 90, 214, 98);
+  quadraticVertex(229, 92, 235, 94);
   endShape();
-  
-  //nose
+
+  // nose
   stroke(40);
   beginShape();
   vertex(195, 141);
   vertex(199, 146);
-  line(177, 501, 166, 500);
   endShape();
-  
-   //mouth
+
+  // mouth
   stroke(40);
   beginShape();
   vertex(189, 156);
- quadraticVertex(198, 161, 210, 155);
-  line(177, 501, 166, 500);
+  quadraticVertex(198, 161, 210, 155);
   endShape();
 
-  //left arm
+  // left arm
   stroke(40);
   beginShape();
   vertex(138, 192);
@@ -59,10 +54,9 @@ function draw() {
   quadraticVertex(110, 203, 96, 209);
   quadraticVertex(88, 223, 97, 248);
   quadraticVertex(121, 252, 145, 242);
-  line(177, 501, 166, 500);
   endShape();
 
-  //feet
+  // feet
   stroke(40);
   beginShape();
   vertex(185, 362);
@@ -87,10 +81,9 @@ function draw() {
   quadraticVertex(354, 449, 341, 429);
   quadraticVertex(317, 416, 287, 410);
   quadraticVertex(269, 403, 213, 361);
-  line(177, 501, 166, 500);
   endShape();
-  
-  //body n arm
+
+  // body + arm
   stroke(40);
   beginShape();
   vertex(156, 160);
@@ -106,10 +99,9 @@ function draw() {
   quadraticVertex(286, 49, 287, 70);
   vertex(238, 164);
   quadraticVertex(199, 225, 156, 161);
-  line(177, 501, 166, 500);
   endShape();
 
-  //belt
+  // belt
   stroke(40);
   beginShape();
   vertex(138, 223);
@@ -117,10 +109,9 @@ function draw() {
   vertex(261, 245);
   quadraticVertex(200, 270, 136, 245);
   vertex(138, 223);
-  line(177, 501, 166, 500);
   endShape();
 
-  //body right arm
+  // right arm
   stroke(40);
   beginShape();
   vertex(254, 189);
@@ -128,7 +119,5 @@ function draw() {
   quadraticVertex(276, 232, 239, 260);
   quadraticVertex(217, 224, 220, 221);
   quadraticVertex(236, 210, 251, 212);
-  line(177, 501, 166, 500);
   endShape();
-
 }
