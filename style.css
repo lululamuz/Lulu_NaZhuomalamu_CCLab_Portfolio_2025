@@ -111,3 +111,41 @@ h2 {
 .placeholder {
   opacity: 0.6;
 }
+
+/* ===== About page: full-bleed photo ===== */
+.about-page {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+.about-photo {
+  width: 100vw;
+  height: 100vh;
+
+  /* 把这里的文件名改成你上传的照片文件名 */
+  background-image: url("about.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* tiny back button */
+.back-home {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 10;
+
+  text-decoration: none;
+  color: white;
+  font-size: 1.6rem;
+  opacity: 0.8;
+}
+
+.back-home:hover {
+  opacity: 1;
+}
+
