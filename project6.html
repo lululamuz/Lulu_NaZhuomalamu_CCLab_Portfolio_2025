@@ -1,63 +1,61 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
-  
-    <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Portrait – Lulu Portfolio</title>
+
+  <link rel="stylesheet" href="style.css" />
 
   <!-- p5.js libraries -->
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
-
-  <title>Data Portrait – My Portfolio</title>
-
 </head>
 
-<body>
+<body class="project-page">
 
-  <nav>
+  <div class="project-wrap">
 
-    <ul>
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="index.html#projects">← Back</a>
 
-      <li><a href="index.html">Home</a></li>
+      <div class="project-nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="extra.html">Extra</a>
+      </div>
+    </nav>
 
-      <li><a href="about.html">About</a></li>
+    <header class="project-header">
+      <h1 class="project-title">Data Portrait</h1>
+      <p class="project-meta">
+        Project 6 · p5.js · Data visualization · Habit tracking
+      </p>
+    </header>
 
-      <li><a href="extra.html">Extra</a></li>
-<main>
-    </ul>
+    <section class="project-section">
+      <h2 class="project-h2">p5.js Sketch</h2>
 
-  </nav>
+      <div class="project-media">
+        <!-- Canvas will appear here -->
+        <div id="sketch-container"></div>
+      </div>
+    </section>
 
+    <section class="project-section">
+      <h2 class="project-h2">Description</h2>
 
-  <h1>Data Portrait</h1>
+      <p>
+        Project 6: Data Portrait.
+        This assignment explores tracking personal habits. I spent a week tracking
+        the times I picked up my phone and created a data portrait to visualize the data.
+      </p>
 
+    </section>
 
-  <h2>p5.js Sketch</h2>
+  </div>
 
-    <!-- Canvas will appear here -->
-
-    <div id="sketch-container"></div>
-
-  <h2>Description</h2>
-
-  <p>
-
-    Project 6: Data Portrait
-    Assignment 6 explores tracking personal habits. I spent a week tracking the times I picked up my phone and created a data portrait to visualize the data. 
-
-  </p>
-<main>
   <!-- Your p5 sketch file -->
-
   <script src="project6.js"></script>
 </body>
-
-</body>
-
 </html>
