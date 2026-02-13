@@ -91,19 +91,23 @@ body {
 
 /* PROJECTS: stretch horizontally */
 .projects-title {
-  font-size: 13vw;          /* 降低一点，避免整体太大 */
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+  font-size: 15vw;
+  line-height: 0.9;
 
-  display: block;
+  /* 关键：用字距“挤压”来制造横向张力，而不是靠巨大的 scaleX */
+  letter-spacing: -0.08em;
+
   width: 100%;
   text-align: center;
+  margin: 0 auto 60px auto;
 
-  transform: scaleX(1.75) scaleY(0.78);  /* 把 2.2 降下来 */
+  /* 只做很轻微的横向扩张，避免溢出 */
+  transform: scaleX(1.18) scaleY(0.85);
   transform-origin: center;
 
-  margin: 0 auto 60px auto;
-}
+  /* 保险：不允许溢出造成裁切/跑出去 */
+  overflow: hidd
+
 
 
 
