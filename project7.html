@@ -1,61 +1,67 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Autobiographical Game – Lulu Portfolio</title>
 
-   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" />
 
-  <!-- p5.js libraries -->
-
+  <!-- p5.js libraries (not needed for iframe but safe to keep consistent) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
-
-  <title>Autobiographical Game – My Portfolio</title>
-
 </head>
 
-<body>
+<body class="project-page">
 
-  <nav>
+  <div class="project-wrap">
 
-    <ul>
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="index.html#projects">← Back</a>
 
-      <li><a href="index.html">Home</a></li>
+      <div class="project-nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="extra.html">Extra</a>
+      </div>
+    </nav>
 
-      <li><a href="about.html">About</a></li>
+    <header class="project-header">
+      <h1 class="project-title">Autobiographical Game</h1>
+      <p class="project-meta">
+        Project 7 · p5.js · Narrative · Interactive game
+      </p>
+    </header>
 
-      <li><a href="extra.html">Extra</a></li>
-<main>
-    </ul>
+    <section class="project-section">
+      <h2 class="project-h2">Live Sketch</h2>
 
-  </nav>
+      <div class="project-media">
+        <iframe 
+          src="https://editor.p5js.org/luluzhuo/full/U6j-iCYA8"
+          title="Autobiographical Game"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </section>
 
+    <section class="project-section">
+      <h2 class="project-h2">Description</h2>
 
-  <h1>Autobiographical Game</h1> 
+      <p>
+        Project 7: Autobiographical Game.
+        This assignment explores a narrative we tell ourselves or others
+        about who we are.
+      </p>
 
-  <div>
+      <p>
+        The game I created tells a story about my journey — where I started,
+        the environments I moved through, and the experiences that shaped who I am today.
+      </p>
 
-  <iframe src="https://editor.p5js.org/luluzhuo/full/U6j-iCYA8"></iframe>
+    </section>
 
   </div>
 
-
-  <h2>Description</h2>
-
-  <p>
-
-    Project 7: Autobiographical Game
-    Assignment 7 explores a narrative that we either tell to ourselves or others, about who we are. This game that I created tells a story about me, the journey of where I started, and shaped who I am. 
-    
-
-  </p>
-  <main>
-  <!-- Your p5 sketch file -->
-
 </body>
-
 </html>
