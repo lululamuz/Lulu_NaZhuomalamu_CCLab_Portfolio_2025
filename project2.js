@@ -1,10 +1,12 @@
+let canvas;
+
 function setup() {
 
   // create the canvas
-
   canvas = createCanvas(400, 400);
 
   // attach the canvas to the div in your HTML
+  canvas.parent("sketch-container");
 }
 
 function draw() {
@@ -13,20 +15,18 @@ function draw() {
   let faceColor = map(mouseY, 0, height, 255, 150); // color changes with mouseY
   fill(faceColor, 220, 200);
 
-  rectMode(CENTER); //face
+  rectMode(CENTER); // face
   noStroke();
-  rect(200, 200, 200, 200, 30); //x, y, width, height, corner radius
+  rect(width / 2, height / 2, 200, 200, 30);
 
   let eyeSize = map(mouseX, 0, width, 10, 40); // eye changes
 
-  fill(0); //eyes
-  ellipse(160, 170, eyeSize, eyeSize); //left eye
-  ellipse(240, 170, eyeSize, eyeSize); //right eye
+  fill(0); // eyes
+  ellipse(width / 2 - 40, height / 2 - 30, eyeSize, eyeSize);
+  ellipse(width / 2 + 40, height / 2 - 30, eyeSize, eyeSize);
 
-  noFill();  //smile mouth
+  noFill();  // smile mouth
   stroke(0);
   strokeWeight(4);
-  arc(200, 230, 80, 40, 0, PI); //x, y, width, height, start, stop
+  arc(width / 2, height / 2 + 30, 80, 40, 0, PI);
 }
-
-
