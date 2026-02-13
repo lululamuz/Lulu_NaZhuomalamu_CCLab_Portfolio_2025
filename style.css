@@ -38,6 +38,12 @@ body {
 
   text-shadow: 0 0 60px rgba(255, 0, 0, 0.15);
 }
+.hero-link {
+  text-decoration: none;
+  color: red;
+  display: inline-block;
+  cursor: pointer;
+}
 
 /* Arrow */
 .arrow {
