@@ -4,21 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lulu Portfolio</title>
+
+  <!-- Experimental narrow font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-  <!-- HERO (Full screen) -->
-  <section id="hero" aria-label="Hero">
+  <!-- HERO -->
+  <section id="hero">
     <h1 class="hero-title">LULU</h1>
-    <a class="arrow" href="#projects" aria-label="Scroll to projects">↓</a>
+    <a href="#projects" class="arrow">↓</a>
   </section>
 
-  <!-- CONTENT (Shows after scrolling) -->
+  <!-- CONTENT AFTER SCROLL -->
   <main id="content">
 
-    <nav class="top-nav" aria-label="Main navigation">
+    <nav class="top-nav">
       <ul>
         <li><a href="#projects">Projects</a></li>
         <li><a href="about.html">About</a></li>
@@ -26,12 +32,12 @@
       </ul>
     </nav>
 
-    <section class="projects-section" aria-label="Projects">
+    <section class="projects-section">
       <h2 id="projects">Projects</h2>
 
       <div class="two-column">
-        <!-- CC Lab -->
-        <section class="column">
+
+        <div class="column">
           <h3>CC Lab</h3>
           <ul class="project-list">
             <li><a href="project1.html">Project 1</a></li>
@@ -42,15 +48,15 @@
             <li><a href="project6.html">Project 6</a></li>
             <li><a href="project7.html">Project 7</a></li>
           </ul>
-        </section>
+        </div>
 
-        <!-- Advanced CC Lab -->
-        <section class="column">
+        <div class="column">
           <h3>Advanced CC Lab</h3>
           <ul class="project-list">
             <li><span class="placeholder">Coming soon</span></li>
           </ul>
-        </section>
+        </div>
+
       </div>
     </section>
 
