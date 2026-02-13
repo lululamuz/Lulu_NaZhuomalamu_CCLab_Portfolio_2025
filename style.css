@@ -115,15 +115,14 @@ h2 {
 /* ===== About page: full-bleed photo ===== */
 .about-page {
   margin: 0;
-  padding: 0;
-  height: 100vh;
+  padding: 60px 40px;
+  background-color: #f4ecff;
+  font-family: 'Inter', sans-serif;
 
-  background-color: #f4ecff;  /* 原来的背景色 */
-  
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: auto;          /* 关键：不要 100vh */
+  overflow: auto;        /* 关键：允许滚动 */
 }
+
 
 .about-image {
   max-width: 90vw;
