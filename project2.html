@@ -1,60 +1,64 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Face Generator – Lulu Portfolio</title>
 
   <link rel="stylesheet" href="style.css" />
 
-    <!-- p5.js libraries -->
+  <!-- p5.js libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
-
-  <title>Face Generator – My Portfolio</title>
-
 </head>
 
-<body>
+<body class="project-page">
 
-  <nav>
+  <div class="project-wrap">
 
-    <ul>
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="index.html#projects">← Back</a>
 
-      <li><a href="index.html">Home</a></li>
+      <div class="project-nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="extra.html">Extra</a>
+      </div>
+    </nav>
 
-      <li><a href="about.html">About</a></li>
+    <header class="project-header">
+      <h1 class="project-title">Face Generator</h1>
+      <p class="project-meta">
+        Project 2 · p5.js · Generator · Mouse/keyboard interaction
+      </p>
+    </header>
 
-      <li><a href="extra.html">Extra</a></li>
-<main>
-    </ul>
+    <section class="project-section">
+      <h2 class="project-h2">p5.js Sketch</h2>
 
-  </nav>
+      <div class="project-media">
+        <!-- Canvas will appear here -->
+        <div id="sketch-container"></div>
+      </div>
+    </section>
 
+    <section class="project-section">
+      <h2 class="project-h2">Description</h2>
 
-  <h1>Face Generator</h1>
+      <p>
+        Project 2: Face Generator
+      </p>
 
+      <p>
+        Assignment 2 explores the possibility of a form through its parameters.
+        I created a simple generator that produces multiple variations of a face
+        through mouse or keyboard interactions.
+      </p>
+    </section>
 
-  <h2>p5.js Sketch</h2>
-  
-  <!-- Canvas will appear here -->
- 
-  <div id="sketch-container"></div>
+  </div>
 
-  <h2>Description</h2>
-
-  <p>
-
-    Project 2: Face Generator
-    Assignment 2 explores the possibility of a form through its parameters. 
-    To create a simple generator that will create multiple variations of the face through mouse or keyboard interactions. 
-
-  </p>
-<main>
-    <!-- Your p5 sketch file -->
-    <script src="project2.js"></script>
+  <!-- Your p5 sketch file -->
+  <script src="project2.js"></script>
 </body>
-
 </html>
