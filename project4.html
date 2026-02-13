@@ -1,62 +1,69 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exquisite Corpse – Lulu Portfolio</title>
+
   <link rel="stylesheet" href="style.css" />
 
   <!-- p5.js libraries -->
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
-
-  <title>Exquisite Corpse – My Portfolio</title>
-
 </head>
 
-<body>
+<body class="project-page">
 
-  <nav>
+  <div class="project-wrap">
 
-    <ul>
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="index.html#projects">← Back</a>
 
-      <li><a href="index.html">Home</a></li>
+      <div class="project-nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="extra.html">Extra</a>
+      </div>
+    </nav>
 
-      <li><a href="about.html">About</a></li>
+    <header class="project-header">
+      <h1 class="project-title">Exquisite Corpse</h1>
+      <p class="project-meta">
+        Project 4 · p5.js · Collaboration · Surrealist technique
+      </p>
+    </header>
 
-      <li><a href="extra.html">Extra</a></li>
-    <main>
-    </ul>
+    <section class="project-section">
+      <h2 class="project-h2">p5.js Sketch</h2>
 
-  </nav>
+      <div class="project-media">
+        <!-- Canvas will appear here -->
+        <div id="sketch-container"></div>
+      </div>
+    </section>
 
+    <section class="project-section">
+      <h2 class="project-h2">Description</h2>
 
-  <h1>Exquisite Corpse</h1>
+      <p>
+        Project 4: Exquisite Corpse.
+        This assignment explores the surrealist technique of exquisite corpse,
+        where players take turns drawing portions of a figure without seeing
+        what has already been drawn by others.
+      </p>
 
+      <p>
+        The final image is revealed at the end, often creating surprising
+        and unexpected forms and narratives. In this piece, the head is my
+        original design, while the body and lower portion were contributed
+        by classmates.
+      </p>
 
-  <h2>p5.js Sketch</h2>
+    </section>
 
-  <!-- Canvas will appear here -->
+  </div>
 
-  <div id="sketch-container"></div>
-
-  <h2>Description</h2>
-
-  <p>
-
-  Project 4: Exquisite Corpse
-  Assignment 4 explores the exquisite corpse - a surrealist technique where players take turns to draw a portion of a figure while not being able to see what has already been drawn by other players.
-  The drawing gets revealed at the end, which tends to create surprising and unexpected forms and narratives. For this image, the head portion is my original design, while the body and the bottom portion are from classmates. 
-
-  </p>
-
-  <main>
   <!-- Your p5 sketch file -->
   <script src="project4.js"></script>
 </body>
-
 </html>
