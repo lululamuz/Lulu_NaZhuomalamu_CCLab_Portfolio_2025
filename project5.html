@@ -1,63 +1,66 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Optical Illusion – Lulu Portfolio</title>
+
   <link rel="stylesheet" href="style.css" />
 
   <!-- p5.js libraries -->
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
-
-
-  <title>Optical Illusion – My Portfolio</title>
-
 </head>
 
-<body>
+<body class="project-page">
 
-  <nav>
+  <div class="project-wrap">
 
-    <ul>
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="index.html#projects">← Back</a>
 
-      <li><a href="index.html">Home</a></li>
+      <div class="project-nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="extra.html">Extra</a>
+      </div>
+    </nav>
 
-      <li><a href="about.html">About</a></li>
+    <header class="project-header">
+      <h1 class="project-title">Optical Illusion</h1>
+      <p class="project-meta">
+        Project 5 · p5.js · Animation · Optical illusion
+      </p>
+    </header>
 
-      <li><a href="extra.html">Extra</a></li>
-<main>
-    </ul>
+    <section class="project-section">
+      <h2 class="project-h2">p5.js Sketch</h2>
 
-  </nav>
+      <div class="project-media">
+        <!-- Canvas will appear here -->
+        <div id="sketch-container"></div>
+      </div>
+    </section>
 
+    <section class="project-section">
+      <h2 class="project-h2">Description</h2>
 
-  <h1>Optical Illusion</h1>
+      <p>
+        Project 5: Optical Illusion.
+        This assignment explores how optical illusions can be deployed to obfuscate
+        personal information, communication, and locations.
+      </p>
 
+      <p>
+        For this project, I created an animated optical illusion, considering
+        possible ways it could be deployed in the world around me.
+      </p>
 
-  <h2>p5.js Sketch</h2>
+    </section>
 
-     <!-- Canvas will appear here -->
+  </div>
 
-    <div id="sketch-container"></div>
-
-  <h2>Description</h2>
-
-  <p>
-
-    Project 5: Optical Illusion
-    Assignment 5 explores how optical illusions were deployed to obfuscate personal information, communication, and locations. 
-    For this assignment, I create an optical illusion that animates, considering possible ways it may be deployed in the world around me.
-
-  </p>
-<main>
-    <!-- Your p5 sketch file -->
-
+  <!-- Your p5 sketch file -->
   <script src="project5.js"></script>
 </body>
-
 </html>
