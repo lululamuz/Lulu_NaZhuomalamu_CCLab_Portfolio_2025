@@ -12,7 +12,7 @@ function makePoster9(p) {
   let lastShuffle = 0;
 
   p.preload = () => {
-    font = p.loadFont("Fredoka-Regular.ttf");
+    font = p.loadFont("assets/Fredoka-Regular.ttf");
   };
 
   p.setup = () => {
