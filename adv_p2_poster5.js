@@ -6,7 +6,7 @@ function makePoster5(p) {
   let seeds = [];
 
   p.preload = () => {
-    font = p.loadFont("Fredoka-Regular.ttf");
+    font = p.loadFont("assets/Fredoka-Regular.ttf");
   };
 
   p.setup = () => {
