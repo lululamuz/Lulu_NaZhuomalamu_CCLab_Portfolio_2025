@@ -10,7 +10,7 @@ function makePoster3(p) {
   let bg;
 
   p.preload = () => {
-    font = p.loadFont("Fredoka-Regular.ttf"); // 路径不对就改成 assets/...
+    font = p.loadFont("assets/Fredoka-Regular.ttf");
   };
 
   p.setup = () => {
