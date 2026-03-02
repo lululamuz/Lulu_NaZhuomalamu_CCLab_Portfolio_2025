@@ -6,7 +6,7 @@ function makePoster4(p) {
   let seeds = [];
 
   p.preload = () => {
-    font = p.loadFont("Fredoka-Regular.ttf"); // 路径要确认
+   font = p.loadFont("assets/Fredoka-Regular.ttf");
   };
 
   p.setup = () => {
