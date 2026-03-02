@@ -1,12 +1,91 @@
-<h2>Word Posters (p5.js)</h2>
-<ul>
-  <li><a href="adv_p2_poster1.html">Poster 1</a></li>
-  <li><a href="adv_p2_poster2.html">Poster 2</a></li>
-  <li><a href="adv_p2_poster3.html">Poster 3</a></li>
-  <li><a href="adv_p2_poster4.html">Poster 4</a></li>
-  <li><a href="adv_p2_poster5.html">Poster 5</a></li>
-  <li><a href="adv_p2_poster6.html">Poster 6</a></li>
-  <li><a href="adv_p2_poster7.html">Poster 7</a></li>
-  <li><a href="adv_p2_poster8.html">Poster 8</a></li>
-  <li><a href="adv_p2_poster9.html">Poster 9</a></li>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced CC Lab — Project 2</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- p5 -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+
+  <!-- 你的 9 个 poster 的 js（后面我教你怎么写成不会冲突的） -->
+  <script defer src="adv_p2_posters.js"></script>
+</head>
+
+<body>
+  <main id="content">
+
+    <nav class="top-nav">
+      <ul>
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="extra.html">Extra</a></li>
+      </ul>
+    </nav>
+
+    <h1>Advanced CC Lab — Project 2</h1>
+    <p>Word Posters (p5.js series)</p>
+
+    <!-- 顶部 tab/目录：点了会跳到对应 poster -->
+    <div class="poster-tabs">
+      <a href="#p1">1</a>
+      <a href="#p2">2</a>
+      <a href="#p3">3</a>
+      <a href="#p4">4</a>
+      <a href="#p5">5</a>
+      <a href="#p6">6</a>
+      <a href="#p7">7</a>
+      <a href="#p8">8</a>
+      <a href="#p9">9</a>
+    </div>
+
+    <!-- 9 个 poster 区块 -->
+    <section id="p1" class="poster-section">
+      <h2>Poster 1</h2>
+      <div class="poster-canvas" id="canvas-p1"></div>
+    </section>
+
+    <section id="p2" class="poster-section">
+      <h2>Poster 2</h2>
+      <div class="poster-canvas" id="canvas-p2"></div>
+    </section>
+
+    <section id="p3" class="poster-section">
+      <h2>Poster 3</h2>
+      <div class="poster-canvas" id="canvas-p3"></div>
+    </section>
+
+    <section id="p4" class="poster-section">
+      <h2>Poster 4</h2>
+      <div class="poster-canvas" id="canvas-p4"></div>
+    </section>
+
+    <section id="p5" class="poster-section">
+      <h2>Poster 5</h2>
+      <div class="poster-canvas" id="canvas-p5"></div>
+    </section>
+
+    <section id="p6" class="poster-section">
+      <h2>Poster 6</h2>
+      <div class="poster-canvas" id="canvas-p6"></div>
+    </section>
+
+    <section id="p7" class="poster-section">
+      <h2>Poster 7</h2>
+      <div class="poster-canvas" id="canvas-p7"></div>
+    </section>
+
+    <section id="p8" class="poster-section">
+      <h2>Poster 8</h2>
+      <div class="poster-canvas" id="canvas-p8"></div>
+    </section>
+
+    <section id="p9" class="poster-section">
+      <h2>Poster 9</h2>
+      <div class="poster-canvas" id="canvas-p9"></div>
+    </section>
+
+  </main>
+</body>
+</html>
