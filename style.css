@@ -305,7 +305,7 @@ body {
 .poster-tabs{
   position: sticky;
   top: 0;
-  background: white;
+  background: #f4ecff;   /* 跟 body 一样 */
   padding: 10px 0;
   margin: 12px 0 24px;
   display: flex;
