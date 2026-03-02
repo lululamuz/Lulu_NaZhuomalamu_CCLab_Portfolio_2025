@@ -8,7 +8,7 @@ function makePoster7(p) {
   let trigger = 170;
 
   p.preload = () => {
-    font = p.loadFont("Fredoka-Regular.ttf");
+    font = p.loadFont("assets/Fredoka-Regular.ttf");
   };
 
   p.setup = () => {
