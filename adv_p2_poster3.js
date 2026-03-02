@@ -1,103 +1,99 @@
-let font;
-let word = "HEDGEHOG";
-let fs = 120;
+function makePoster3(p) {
+  let font;
+  let word = "HEDGEHOG";
+  let fs = 120;
 
-let pgMask;     // 用来画文字做“遮罩/碰撞”
-let pgStripes;  // 用来画竖条材质
+  let pgMask;     // 用来画文字做“遮罩/碰撞”
+  let pgStripes;  // 用来画竖条材质
 
-let x, y;       // 文字基线位置
-let bg;
+  let x, y;       // 文字基线位置
+  let bg;
 
-function preload() {
-  font = loadFont("Fredoka-Regular.ttf"); 
-  // 换成 study guide 的字体文件名，比如:
-  // font = loadFont("StudyGuideFont-Regular.ttf");
-}
+  p.preload = () => {
+    font = p.loadFont("Fredoka-Regular.ttf"); // 路径不对就改成 assets/...
+  };
 
-function setup() {
-  createCanvas(600, 600);
-  bg = color(140, 105, 75); // 深一点的棕色（你可继续调）
+  p.setup = () => {
+    const c = p.createCanvas(600, 600);
+    c.parent("canvas-p3");
 
-  pgMask = createGraphics(width, height);
-  pgStripes = createGraphics(width, height);
+    bg = p.color(140, 105, 75);
 
-  textFont(font);
-  textSize(fs);
+    pgMask = p.createGraphics(p.width, p.height);
+    pgStripes = p.createGraphics(p.width, p.height);
 
-  // 自动缩放：不出边框
-  while (textWidth(word) > width * 0.85) {
-    fs -= 5;
-    textSize(fs);
+    p.textFont(font);
+    p.textSize(fs);
+
+    while (p.textWidth(word) > p.width * 0.85) {
+      fs -= 5;
+      p.textSize(fs);
+    }
+
+    // 用 textBounds 真·居中
+    let b = font.textBounds(word, 0, 0, fs);
+    x = p.width / 2 - (b.x + b.w / 2);
+    y = p.height / 2 - (b.y + b.h / 2);
+
+    redrawMask();
+  };
+
+  function redrawMask() {
+    pgMask.clear();
+    pgMask.textFont(font);
+    pgMask.textSize(fs);
+    pgMask.noStroke();
+    pgMask.fill(255);
+    pgMask.text(word, x, y);
   }
 
-  // 用 textBounds 真·居中
-  let b = font.textBounds(word, 0, 0, fs);
-  x = width / 2 - (b.x + b.w / 2);
-  y = height / 2 - (b.y + b.h / 2);
+  p.draw = () => {
+    p.background(bg);
 
-  // 预先生成一次 mask（文字形状）
-  redrawMask();
-}
+    const hovering = isMouseOverText(p.mouseX, p.mouseY);
 
-function redrawMask() {
-  pgMask.clear();
-  pgMask.textFont(font);
-  pgMask.textSize(fs);
-  pgMask.noStroke();
-  pgMask.fill(255);
-  pgMask.text(word, x, y);
-}
+    if (!hovering) {
+      // 正常文字
+      p.fill(255);
+      p.noStroke();
+      p.textFont(font);
+      p.textSize(fs);
+      p.text(word, x, y);
+      return;
+    }
 
-function draw() {
-  background(bg);
+    // hovering 时：画竖条材质 → mask 成文字形状
+    pgStripes.clear();
 
-  const hovering = isMouseOverText(mouseX, mouseY);
+    let stripeW = 7;
+    let gap = 4;
+    let jitter = 6;
 
-  if (!hovering) {
-    // 正常文字
-    fill(255);
-    noStroke();
-    textFont(font);
-    textSize(fs);
-    text(word, x, y);
-    return;
+    pgStripes.noStroke();
+    for (let i = 0; i < p.width; i += stripeW + gap) {
+      let offset = Math.sin((p.frameCount * 0.06) + i * 0.03) * jitter;
+      pgStripes.fill(255);
+      pgStripes.rect(i, 0 + offset, stripeW, p.height);
+    }
+
+    let stripesImg = pgStripes.get();
+    let maskImg = pgMask.get();
+    stripesImg.mask(maskImg);
+
+    p.image(stripesImg, 0, 0);
+
+    // 可选：淡淡描一层正常字增强可读性
+    p.fill(255, 35);
+    p.noStroke();
+    p.text(word, x, y);
+  };
+
+  function isMouseOverText(mx, my) {
+    if (mx < 0 || mx >= p.width || my < 0 || my >= p.height) return false;
+    let c = pgMask.get(mx, my); // [r,g,b,a]
+    return c[3] > 10;
   }
-
-  // hovering 时：画竖条材质（覆盖整个画布），再用文字 mask 裁切成“竖条文字”
-  pgStripes.clear();
-
-  // 竖条参数：你可以调
-  let stripeW = 7;       // 每条宽度
-  let gap = 4;           // 条间距
-  let jitter = 6;        // 鼠标导致的抖动幅度（更有生命感）
-
-  pgStripes.noStroke();
-  for (let i = 0; i < width; i += stripeW + gap) {
-    // 让竖条随着鼠标轻微波动
-    let offset = sin((frameCount * 0.06) + i * 0.03) * jitter;
-    pgStripes.fill(255);
-    pgStripes.rect(i, 0 + offset, stripeW, height);
-  }
-
-  // 把竖条图像裁成文字形状
-  let stripesImg = pgStripes.get();
-  let maskImg = pgMask.get();
-  stripesImg.mask(maskImg);
-
-  image(stripesImg, 0, 0);
-
-  // 可选：加一层很淡的正常文字轮廓，让海报更“读得清”
-  fill(255, 35);
-  noStroke();
-  text(word, x, y);
 }
 
-// 用 mask 画布做碰撞检测：鼠标点到文字像素就算 hover
-function isMouseOverText(mx, my) {
-  // 防止越界
-  if (mx < 0 || mx >= width || my < 0 || my >= height) return false;
-
-  // pgMask 里文字是白色，背景透明
-  let c = pgMask.get(mx, my); // [r,g,b,a]
-  return c[3] > 10; // alpha 有值说明在文字上
-}
+// ✅ 实例化（文件最底部统一写也行）
+new p5(makePoster3);
