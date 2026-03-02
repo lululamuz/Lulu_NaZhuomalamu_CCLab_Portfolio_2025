@@ -7,7 +7,7 @@ function makePoster6(p) {
   let center;
 
   p.preload = () => {
-    font = p.loadFont("Fredoka-Regular.ttf");
+    font = p.loadFont("assets/Fredoka-Regular.ttf");
   };
 
   p.setup = () => {
