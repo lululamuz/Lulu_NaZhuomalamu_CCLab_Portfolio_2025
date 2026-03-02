@@ -11,7 +11,7 @@ function makePoster1(p) {
   p.preload = () => {
     // 注意：字体路径要对！如果字体在根目录，就这样；
     // 如果在 assets 文件夹，用 "assets/Fredoka-Regular.ttf"
-    font = p.loadFont("Fredoka-Regular.ttf");
+    font = p.loadFont("assets/Fredoka-Regular.ttf");
   };
 
   p.setup = () => {
