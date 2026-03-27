@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Experimental Camera – Lulu Portfolio</title>
+  <title>Experimental Camera | Lulu Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 
   <!-- p5.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
 
-  <!-- ml5 if you used Teachable Machine / image classifier -->
-  <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+  <!-- Teachable Machine -->
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 </head>
 
 <body class="project-page">
   <div class="project-wrap">
-    <nav class="project-nav" aria-label="Project navigation">
+    <nav class="project-nav">
       <a href="index.html#projects">← Back</a>
       <div class="project-nav-links">
         <a href="index.html">Home</a>
@@ -29,7 +28,7 @@
     <header class="project-header">
       <h1 class="project-title">Experimental Camera</h1>
       <p class="project-meta">
-        Advanced CC Lab · Project 3 · p5.js · webcam · interaction
+        Advanced CC Lab · Project 3 · p5.js · Teachable Machine
       </p>
     </header>
 
@@ -43,13 +42,30 @@
     <section class="project-section">
       <h2 class="project-h2">Description</h2>
       <p>
-        This project reimagines the camera as an experimental interactive tool
-        rather than a device for simple documentation.
+        This project explores the camera as an interactive communication tool
+        rather than a device for simple recording. Using Teachable Machine,
+        the system recognizes several trained hand gestures and translates them
+        into real-time subtitles on screen.
       </p>
       <p>
-        Using webcam input, the system responds to the user in real time and
-        transforms the viewing experience through interaction, gesture, and
-        dynamic visual feedback.
+        I wanted to imagine a more expressive and accessible camera interface:
+        one that responds to gesture, language, and presence. The project also
+        reflects on communication beyond spoken words, turning sign-based input
+        into a cinematic live subtitle experience.
+      </p>
+    </section>
+
+    <section class="project-section">
+      <h2 class="project-h2">Interaction</h2>
+      <p>
+        Show one of the trained gestures to the webcam:
+        <strong>hi</strong>, <strong>yes</strong>, or <strong>love</strong>.
+      </p>
+      <p>
+        Keyboard backup:
+        <strong>1</strong> = HELLO,
+        <strong>2</strong> = YES,
+        <strong>3</strong> = LOVE
       </p>
     </section>
   </div>
