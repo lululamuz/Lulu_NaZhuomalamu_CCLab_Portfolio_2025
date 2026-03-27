@@ -1,5 +1,6 @@
 let model;
 let modelURL = "https://teachablemachine.withgoogle.com/models/Tt7cjFUxF/";
+console.log("MODEL LOADED:", model);
 
 let video;
 let overlay;
