@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experimental Camera – Lulu Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
 
+  <!-- p5.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>
+
+  <!-- ml5 if you used Teachable Machine / image classifier -->
+  <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+</head>
+
+<body class="project-page">
+  <div class="project-wrap">
+    <nav class="project-nav" aria-label="Project navigation">
+      <a href="index.html#projects">← Back</a>
+      <div class="project-nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="extra.html">Extra</a>
+      </div>
+    </nav>
+
+    <header class="project-header">
+      <h1 class="project-title">Experimental Camera</h1>
+      <p class="project-meta">
+        Advanced CC Lab · Project 3 · p5.js · webcam · interaction
+      </p>
+    </header>
+
+    <section class="project-section">
+      <h2 class="project-h2">Live Sketch</h2>
+      <div class="project-media">
+        <div id="sketch-container"></div>
+      </div>
+    </section>
+
+    <section class="project-section">
+      <h2 class="project-h2">Description</h2>
+      <p>
+        This project reimagines the camera as an experimental interactive tool
+        rather than a device for simple documentation.
+      </p>
+      <p>
+        Using webcam input, the system responds to the user in real time and
+        transforms the viewing experience through interaction, gesture, and
+        dynamic visual feedback.
+      </p>
+    </section>
+  </div>
+
+  <script src="adv_project3.js"></script>
+</body>
+</html>
