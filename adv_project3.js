@@ -13,6 +13,7 @@ let titleText;
 let cameraStarted = false;
 let modelLoaded = false;
 let isPredicting = false;
+let hasTriedModelLoad = false;
 
 let currentSubtitle = "";
 let currentStatus = "Camera off";
@@ -126,52 +127,65 @@ async function startCamera() {
     updateStatus();
 
     video = createCapture(VIDEO, () => {
+      video.size(CANVAS_W, CANVAS_H);
+      video.hide();
+      cameraStarted = true;
       currentStatus = "Camera on";
       updateStatus();
-      cameraStarted = true;
+
+      // start loading model only after camera is working
+      if (!hasTriedModelLoad) {
+        loadModel();
+      }
     });
 
-    video.size(320, 240);
+    video.size(CANVAS_W, CANVAS_H);
     video.hide();
 
   } catch (error) {
-    console.error(error);
+    console.error("Camera error:", error);
     currentStatus = "Camera error";
     updateStatus();
   }
 }
 
-  currentStatus = "Loading model...";
-  updateStatus();
+async function loadModel() {
+  hasTriedModelLoad = true;
+
+  if (typeof tmImage === "undefined") {
+    console.error("tmImage is not loaded.");
+    currentStatus = "Model lib missing";
+    updateStatus();
+    return;
+  }
 
   try {
+    currentStatus = "Loading model...";
+    updateStatus();
+
     const modelURLFile = modelURL + "model.json";
     const metadataURL = modelURL + "metadata.json";
+
+    console.log("Trying model:", modelURLFile);
+    console.log("Trying metadata:", metadataURL);
 
     model = await tmImage.load(modelURLFile, metadataURL);
     modelLoaded = true;
 
-    currentStatus = "Starting camera...";
+    currentStatus = "Waiting...";
     updateStatus();
 
-    video = createCapture(VIDEO, () => {
-      currentStatus = "Camera on";
-      updateStatus();
-      cameraStarted = true;
-      startPredictionLoop();
-    });
-
-    video.size(320, 240);
-    video.hide();
+    startPredictionLoop();
   } catch (error) {
-    console.error(error);
-    currentStatus = "Load error";
+    console.error("Model load error:", error);
+    modelLoaded = false;
+    currentStatus = "Model failed, keyboard works";
     updateStatus();
   }
 }
 
 function startPredictionLoop() {
-  if (isPredicting) return;
+  if (isPredicting || !modelLoaded) return;
   isPredicting = true;
   predictLoop();
 }
@@ -181,7 +195,7 @@ async function predictLoop() {
     try {
       await predict();
     } catch (error) {
-      console.error(error);
+      console.error("Prediction error:", error);
       currentStatus = "Prediction error";
       updateStatus();
       break;
@@ -218,38 +232,19 @@ function sleep(ms) {
 function clearSubtitle() {
   currentSubtitle = "";
   subtitleTimer = 0;
-  currentStatus = cameraStarted ? "Waiting..." : "Subtitle cleared";
+  currentStatus = cameraStarted
+    ? (modelLoaded ? "Waiting..." : "Camera on")
+    : "Subtitle cleared";
   updateStatus();
 }
 
 function drawCamera() {
   if (!video) return;
 
-  let camW = video.width;
-  let camH = video.height;
-
-  if (!camW || !camH) return;
-
-  let canvasRatio = width / height;
-  let videoRatio = camW / camH;
-
-  let drawW, drawH;
-
-  if (canvasRatio > videoRatio) {
-    drawW = width;
-    drawH = width / videoRatio;
-  } else {
-    drawH = height;
-    drawW = height * videoRatio;
-  }
-
-  let x = (width - drawW) / 2;
-  let y = (height - drawH) / 2;
-
   push();
   translate(width, 0);
   scale(-1, 1);
-  image(video, x, y, drawW, drawH);
+  image(video, 0, 0, width, height);
   pop();
 }
 
@@ -302,19 +297,15 @@ function drawFramingCorners() {
   let m = 18;
   let len = 26;
 
-  // top left
   overlay.line(m, m, m + len, m);
   overlay.line(m, m, m, m + len);
 
-  // top right
   overlay.line(width - m, m, width - m - len, m);
   overlay.line(width - m, m, width - m, m + len);
 
-  // bottom left
   overlay.line(m, height - m, m + len, height - m);
   overlay.line(m, height - m, m, height - m - len);
 
-  // bottom right
   overlay.line(width - m, height - m, width - m - len, height - m);
   overlay.line(width - m, height - m, width - m, height - m - len);
 
@@ -342,8 +333,8 @@ function drawSubtitleBox() {
 }
 
 function drawStatusPanel() {
-  let panelW = 200;
-  let panelH = 88;
+  let panelW = 220;
+  let panelH = 96;
   let panelX = width - panelW - 18;
   let panelY = 50;
 
@@ -359,11 +350,11 @@ function drawStatusPanel() {
 
   overlay.text("Current status", panelX + 14, panelY + 12);
   overlay.text(currentStatus, panelX + 14, panelY + 30);
-  overlay.text("Prediction: " + label, panelX + 14, panelY + 50);
+  overlay.text("Prediction: " + label, panelX + 14, panelY + 52);
   overlay.text(
     "Confidence: " + nf(confidence * 100, 2, 1) + "%",
     panelX + 14,
-    panelY + 66
+    panelY + 70
   );
 }
 
@@ -372,7 +363,9 @@ function handleSubtitleTimer() {
     subtitleTimer--;
     if (subtitleTimer === 0) {
       currentSubtitle = "";
-      currentStatus = cameraStarted ? "Waiting..." : "Camera off";
+      currentStatus = cameraStarted
+        ? (modelLoaded ? "Waiting..." : "Camera on")
+        : "Camera off";
       updateStatus();
     }
   }
@@ -437,7 +430,6 @@ function keyPressed() {
 }
 
 function windowResized() {
-  // keep fixed canvas size for the portfolio layout
   resizeCanvas(CANVAS_W, CANVAS_H);
   overlay = createGraphics(CANVAS_W, CANVAS_H);
 
