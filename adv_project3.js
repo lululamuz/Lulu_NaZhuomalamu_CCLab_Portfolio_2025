@@ -125,20 +125,17 @@ async function startCamera() {
     currentStatus = "Starting camera...";
     updateStatus();
 
-    video = createCapture(VIDEO, () => {
-      video.size(CANVAS_W, CANVAS_H);
-      video.hide();
-      cameraStarted = true;
-      currentStatus = "Camera on";
-      updateStatus();
-
-      if (!hasTriedModelLoad) {
-        loadModel();
-      }
-    });
-
+    video = createCapture(VIDEO);
     video.size(CANVAS_W, CANVAS_H);
     video.hide();
+
+    cameraStarted = true;
+    currentStatus = "Camera on";
+    updateStatus();
+
+    if (!hasTriedModelLoad) {
+      await loadModel();
+    }
   } catch (error) {
     console.error("Camera error:", error);
     currentStatus = "Camera error";
@@ -162,6 +159,9 @@ async function loadModel() {
 
     const modelURLFile = modelURL + "model.json";
     const metadataURL = modelURL + "metadata.json";
+
+    console.log("Loading model:", modelURLFile);
+    console.log("Loading metadata:", metadataURL);
 
     model = await tmImage.load(modelURLFile, metadataURL);
     modelLoaded = true;
@@ -216,6 +216,8 @@ async function predict() {
   label = bestPrediction.className;
   confidence = bestPrediction.probability;
 
+  console.log(label, confidence);
+
   handleStablePrediction(label, confidence);
 }
 
@@ -228,7 +230,7 @@ function clearSubtitle() {
   subtitleTimer = 0;
   currentStatus = cameraStarted
     ? (modelLoaded ? "Waiting..." : "Camera on")
-    : "Subtitle cleared";
+    : "Camera off";
   updateStatus();
 }
 
@@ -244,19 +246,35 @@ function drawCamera() {
 
 function drawCameraPlaceholder() {
   push();
-  fill(18);
-  rect(0, 0, width, height);
-
-  fill(255, 255, 255, 70);
-  stroke(255, 255, 255, 40);
-  rect(40, 160, width - 80, height - 260, 24);
+  background(12);
 
   noStroke();
-  fill(255, 255, 255, 150);
+  fill(25);
+  rect(40, 120, width - 80, height - 220, 28);
+
+  fill(255, 255, 255, 40);
+  rect(width / 2 - 70, height / 2 - 55, 140, 90, 18);
+
+  fill(255, 255, 255, 70);
+  ellipse(width / 2, height / 2 - 10, 42, 42);
+
+  rect(width / 2 - 38, height / 2 - 78, 36, 18, 6);
+
+  stroke(255, 80);
+  strokeWeight(5);
+  line(width / 2 - 85, height / 2 + 55, width / 2 + 85, height / 2 - 95);
+
+  noStroke();
+  fill(255, 180);
   textAlign(CENTER, CENTER);
-  textSize(20);
+  textSize(18);
   textFont("Inter");
-  text("Click 'Start Camera' to begin", width / 2, height / 2);
+  text("Camera Off", width / 2, height / 2 + 95);
+
+  fill(255, 120);
+  textSize(13);
+  text("Click 'Start Camera' to begin", width / 2, height / 2 + 122);
+
   pop();
 }
 
@@ -379,7 +397,7 @@ function updateStatus() {
 }
 
 function handleStablePrediction(currentLabel, currentConfidence) {
-  if (currentConfidence < 0.85) {
+  if (currentConfidence < 0.6) {
     stableLabel = "";
     stableCount = 0;
     return;
@@ -397,7 +415,7 @@ function handleStablePrediction(currentLabel, currentConfidence) {
     return;
   }
 
-  if (stableCount > 6 && currentLabel !== lastTriggeredLabel) {
+  if (stableCount > 2 && currentLabel !== lastTriggeredLabel) {
     if (currentLabel === "hi") {
       triggerSubtitle("HELLO");
     } else if (currentLabel === "yes") {
