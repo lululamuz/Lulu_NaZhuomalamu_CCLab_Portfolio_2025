@@ -27,7 +27,6 @@ let stableLabel = "";
 let stableCount = 0;
 let lastTriggeredLabel = "";
 
-// fixed canvas size for portfolio page
 const CANVAS_W = 600;
 const CANVAS_H = 600;
 
@@ -133,7 +132,6 @@ async function startCamera() {
       currentStatus = "Camera on";
       updateStatus();
 
-      // start loading model only after camera is working
       if (!hasTriedModelLoad) {
         loadModel();
       }
@@ -141,7 +139,6 @@ async function startCamera() {
 
     video.size(CANVAS_W, CANVAS_H);
     video.hide();
-
   } catch (error) {
     console.error("Camera error:", error);
     currentStatus = "Camera error";
@@ -165,9 +162,6 @@ async function loadModel() {
 
     const modelURLFile = modelURL + "model.json";
     const metadataURL = modelURL + "metadata.json";
-
-    console.log("Trying model:", modelURLFile);
-    console.log("Trying metadata:", metadataURL);
 
     model = await tmImage.load(modelURLFile, metadataURL);
     modelLoaded = true;
@@ -416,7 +410,6 @@ function handleStablePrediction(currentLabel, currentConfidence) {
   }
 }
 
-// keyboard backup
 function keyPressed() {
   if (!cameraStarted) return;
 
