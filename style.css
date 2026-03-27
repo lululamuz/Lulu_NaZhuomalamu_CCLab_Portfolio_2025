@@ -316,7 +316,6 @@ body {
 .poster-section{
   margin: 40px 0;
 }
-
 #sketch-container {
   position: relative;
   width: 600px;
@@ -325,6 +324,7 @@ body {
   overflow: hidden;
   border-radius: 20px;
   background: #111;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
 }
 .poster-canvas canvas {
   display: block;
