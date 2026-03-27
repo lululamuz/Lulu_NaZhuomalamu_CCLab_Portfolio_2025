@@ -1,6 +1,5 @@
 let model;
 let modelURL = "https://teachablemachine.withgoogle.com/models/Tt7cjFUxF/";
-console.log("MODEL LOADED:", model);
 
 let video;
 let overlay;
@@ -14,7 +13,6 @@ let titleText;
 let cameraStarted = false;
 let modelLoaded = false;
 let isPredicting = false;
-let hasTriedModelLoad = false;
 
 let currentSubtitle = "";
 let currentStatus = "Camera off";
@@ -49,7 +47,6 @@ function draw() {
     drawCameraPlaceholder();
   }
 
-  drawDarkGradient();
   drawOverlayUI();
   image(overlay, 0, 0);
 
@@ -59,101 +56,40 @@ function draw() {
 function setupDOM() {
   titleText = createDiv("Sign Subtitle Camera");
   titleText.parent("sketch-container");
-  titleText.position(24, 20);
+  titleText.position(20, 20);
   titleText.style("color", "white");
-  titleText.style("font-size", "24px");
-  titleText.style("font-family", "Inter, Arial, sans-serif");
-  titleText.style("font-weight", "600");
-  titleText.style("letter-spacing", "0.04em");
-  titleText.style("z-index", "10");
-  titleText.style("pointer-events", "none");
-
-  instructionText = createDiv(
-    "Show a trained gesture to the camera:<br>hi / yes / love<br><br>Keyboard backup:<br>1 = HELLO<br>2 = YES<br>3 = LOVE"
-  );
-  instructionText.parent("sketch-container");
-  instructionText.position(24, 58);
-  instructionText.style("color", "rgba(255,255,255,0.88)");
-  instructionText.style("font-size", "13px");
-  instructionText.style("line-height", "1.5");
-  instructionText.style("font-family", "Inter, Arial, sans-serif");
-  instructionText.style("max-width", "220px");
-  instructionText.style("z-index", "10");
-  instructionText.style("pointer-events", "none");
 
   statusText = createDiv("Status: Camera off");
   statusText.parent("sketch-container");
   statusText.position(360, 20);
   statusText.style("color", "white");
-  statusText.style("font-size", "13px");
-  statusText.style("text-align", "right");
-  statusText.style("font-family", "Inter, Arial, sans-serif");
-  statusText.style("width", "216px");
-  statusText.style("z-index", "10");
-  statusText.style("pointer-events", "none");
 
   startButton = createButton("Start Camera");
   startButton.parent("sketch-container");
-  startButton.position(24, 548);
+  startButton.position(20, 550);
   startButton.mousePressed(startCamera);
-  styleButton(startButton);
 
-  clearButton = createButton("Clear Subtitle");
+  clearButton = createButton("Clear");
   clearButton.parent("sketch-container");
-  clearButton.position(140, 548);
+  clearButton.position(140, 550);
   clearButton.mousePressed(clearSubtitle);
-  styleButton(clearButton);
-}
-
-function styleButton(btn) {
-  btn.style("background", "rgba(255,255,255,0.12)");
-  btn.style("color", "white");
-  btn.style("border", "1px solid rgba(255,255,255,0.24)");
-  btn.style("padding", "10px 14px");
-  btn.style("border-radius", "999px");
-  btn.style("font-size", "12px");
-  btn.style("font-family", "Inter, Arial, sans-serif");
-  btn.style("letter-spacing", "0.04em");
-  btn.style("cursor", "pointer");
-  btn.style("backdrop-filter", "blur(6px)");
-  btn.style("z-index", "20");
 }
 
 async function startCamera() {
   if (cameraStarted) return;
 
-  try {
-    currentStatus = "Starting camera...";
-    updateStatus();
+  video = createCapture(VIDEO);
+  video.size(CANVAS_W, CANVAS_H);
+  video.hide();
 
-    video = createCapture(VIDEO);
-    video.size(CANVAS_W, CANVAS_H);
-    video.hide();
+  cameraStarted = true;
+  currentStatus = "Camera on";
+  updateStatus();
 
-    cameraStarted = true;
-    currentStatus = "Camera on";
-    updateStatus();
-
-    if (!hasTriedModelLoad) {
-      await loadModel();
-    }
-  } catch (error) {
-    console.error("Camera error:", error);
-    currentStatus = "Camera error";
-    updateStatus();
-  }
+  await loadModel();
 }
 
 async function loadModel() {
-  hasTriedModelLoad = true;
-
-  if (typeof tmImage === "undefined") {
-    console.error("tmImage is not loaded.");
-    currentStatus = "Model lib missing";
-    updateStatus();
-    return;
-  }
-
   try {
     currentStatus = "Loading model...";
     updateStatus();
@@ -161,20 +97,16 @@ async function loadModel() {
     const modelURLFile = modelURL + "model.json";
     const metadataURL = modelURL + "metadata.json";
 
-    console.log("Loading model:", modelURLFile);
-    console.log("Loading metadata:", metadataURL);
-
     model = await tmImage.load(modelURLFile, metadataURL);
-    modelLoaded = true;
 
+    modelLoaded = true;
     currentStatus = "Waiting...";
     updateStatus();
 
     startPredictionLoop();
   } catch (error) {
-    console.error("Model load error:", error);
-    modelLoaded = false;
-    currentStatus = "Model failed, keyboard works";
+    console.error(error);
+    currentStatus = "Model failed";
     updateStatus();
   }
 }
@@ -186,23 +118,16 @@ function startPredictionLoop() {
 }
 
 async function predictLoop() {
-  while (cameraStarted && modelLoaded && video && video.elt && isPredicting) {
-    try {
-      await predict();
-    } catch (error) {
-      console.error("Prediction error:", error);
-      currentStatus = "Prediction error";
-      updateStatus();
-      break;
-    }
-    await sleep(120);
+  while (cameraStarted && modelLoaded) {
+    await predict();
+    await sleep(150);
   }
-
-  isPredicting = false;
 }
 
 async function predict() {
   if (!model || !video || !video.elt) return;
+
+  if (video.width === 0) return; // ⭐️ 关键修复
 
   const predictions = await model.predict(video.elt);
 
@@ -226,18 +151,7 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function clearSubtitle() {
-  currentSubtitle = "";
-  subtitleTimer = 0;
-  currentStatus = cameraStarted
-    ? (modelLoaded ? "Waiting..." : "Camera on")
-    : "Camera off";
-  updateStatus();
-}
-
 function drawCamera() {
-  if (!video) return;
-
   push();
   translate(width, 0);
   scale(-1, 1);
@@ -246,129 +160,58 @@ function drawCamera() {
 }
 
 function drawCameraPlaceholder() {
-  push();
-  background(12);
-
-  noStroke();
-  fill(25);
-  rect(40, 120, width - 80, height - 220, 28);
-
-  fill(255, 255, 255, 40);
-  rect(width / 2 - 70, height / 2 - 55, 140, 90, 18);
-
-  fill(255, 255, 255, 70);
-  ellipse(width / 2, height / 2 - 10, 42, 42);
-
-  rect(width / 2 - 38, height / 2 - 78, 36, 18, 6);
-
-  stroke(255, 80);
-  strokeWeight(5);
-  line(width / 2 - 85, height / 2 + 55, width / 2 + 85, height / 2 - 95);
-
-  noStroke();
-  fill(255, 180);
+  background(20);
+  fill(255);
   textAlign(CENTER, CENTER);
-  textSize(18);
-  textFont("Inter");
-  text("Camera Off", width / 2, height / 2 + 95);
-
-  fill(255, 120);
-  textSize(13);
-  text("Click 'Start Camera' to begin", width / 2, height / 2 + 122);
-
-  pop();
-}
-
-function drawDarkGradient() {
-  push();
-  noStroke();
-
-  for (let y = 0; y < height; y += 8) {
-    let alphaTop = map(y, 0, height * 0.22, 150, 0, true);
-    let alphaBottom = map(y, height * 0.68, height, 0, 190, true);
-    let alpha = max(alphaTop, alphaBottom);
-    fill(0, alpha);
-    rect(0, y, width, 8);
-  }
-
-  pop();
+  text("Click Start Camera", width / 2, height / 2);
 }
 
 function drawOverlayUI() {
   overlay.clear();
-  drawFramingCorners();
-  drawSubtitleBox();
-  drawStatusPanel();
+
+  if (currentSubtitle !== "") {
+    overlay.fill(0, 180);
+    overlay.rect(50, height - 120, width - 100, 60, 10);
+
+    overlay.fill(255);
+    overlay.textAlign(CENTER, CENTER);
+    overlay.textSize(28);
+    overlay.text(currentSubtitle, width / 2, height - 90);
+  }
 }
 
-function drawFramingCorners() {
-  overlay.push();
-  overlay.stroke(255, 255, 255, 130);
-  overlay.strokeWeight(2);
-  overlay.noFill();
+function handleStablePrediction(label, confidence) {
+  if (confidence < 0.5) return;
 
-  let m = 18;
-  let len = 26;
+  if (label === stableLabel) {
+    stableCount++;
+  } else {
+    stableLabel = label;
+    stableCount = 1;
+  }
 
-  overlay.line(m, m, m + len, m);
-  overlay.line(m, m, m, m + len);
+  if (stableCount > 2 && label !== lastTriggeredLabel) {
+    if (label === "hi") triggerSubtitle("HELLO");
+    if (label === "yes") triggerSubtitle("YES");
+    if (label === "love") triggerSubtitle("LOVE");
 
-  overlay.line(width - m, m, width - m - len, m);
-  overlay.line(width - m, m, width - m, m + len);
-
-  overlay.line(m, height - m, m + len, height - m);
-  overlay.line(m, height - m, m, height - m - len);
-
-  overlay.line(width - m, height - m, width - m - len, height - m);
-  overlay.line(width - m, height - m, width - m, height - m - len);
-
-  overlay.pop();
+    lastTriggeredLabel = label;
+  }
 }
 
-function drawSubtitleBox() {
-  if (currentSubtitle === "") return;
-
-  let boxW = min(width * 0.72, 460);
-  let boxH = 76;
-  let boxX = width / 2 - boxW / 2;
-  let boxY = height - 112;
-
-  overlay.noStroke();
-  overlay.fill(0, 0, 0, 175);
-  overlay.rect(boxX, boxY, boxW, boxH, 18);
-
-  overlay.fill(255);
-  overlay.textAlign(CENTER, CENTER);
-  overlay.textSize(28);
-  overlay.textStyle(BOLD);
-  overlay.textFont("Inter");
-  overlay.text(currentSubtitle, width / 2, boxY + boxH / 2);
+function triggerSubtitle(word) {
+  currentSubtitle = word;
+  subtitleTimer = subtitleDuration;
+  currentStatus = "Detected: " + word;
+  updateStatus();
 }
 
-function drawStatusPanel() {
-  let panelW = 220;
-  let panelH = 96;
-  let panelX = width - panelW - 18;
-  let panelY = 50;
+function clearSubtitle() {
+  currentSubtitle = "";
+}
 
-  overlay.noStroke();
-  overlay.fill(0, 0, 0, 120);
-  overlay.rect(panelX, panelY, panelW, panelH, 16);
-
-  overlay.fill(255);
-  overlay.textAlign(LEFT, TOP);
-  overlay.textSize(12);
-  overlay.textStyle(NORMAL);
-  overlay.textFont("Inter");
-
-  overlay.text("Current status", panelX + 14, panelY + 12);
-  overlay.text(currentStatus, panelX + 14, panelY + 30);
-  overlay.text("Prediction: " + label, panelX + 14, panelY + 52);
-  overlay.text(
-    "Confidence: " + nf(confidence * 100, 2, 1) + "%",
-    panelX + 14,
-    panelY + 70
-  );
+function updateStatus() {
+  statusText.html("Status: " + currentStatus);
 }
 
 function handleSubtitleTimer() {
@@ -376,78 +219,12 @@ function handleSubtitleTimer() {
     subtitleTimer--;
     if (subtitleTimer === 0) {
       currentSubtitle = "";
-      currentStatus = cameraStarted
-        ? (modelLoaded ? "Waiting..." : "Camera on")
-        : "Camera off";
-      updateStatus();
     }
-  }
-}
-
-function triggerSubtitle(word) {
-  currentSubtitle = word;
-  subtitleTimer = subtitleDuration;
-  currentStatus = `Detected: ${word}`;
-  updateStatus();
-}
-
-function updateStatus() {
-  if (statusText) {
-    statusText.html(`Status: ${currentStatus}`);
-  }
-}
-
-function handleStablePrediction(currentLabel, currentConfidence) {
-  if (currentConfidence < 0.6) {
-    stableLabel = "";
-    stableCount = 0;
-    return;
-  }
-
-  if (currentLabel === stableLabel) {
-    stableCount++;
-  } else {
-    stableLabel = currentLabel;
-    stableCount = 1;
-  }
-
-  if (currentLabel === "idle") {
-    lastTriggeredLabel = "";
-    return;
-  }
-
-  if (stableCount > 2 && currentLabel !== lastTriggeredLabel) {
-    if (currentLabel === "hi") {
-      triggerSubtitle("HELLO");
-    } else if (currentLabel === "yes") {
-      triggerSubtitle("YES");
-    } else if (currentLabel === "love") {
-      triggerSubtitle("LOVE");
-    }
-
-    lastTriggeredLabel = currentLabel;
   }
 }
 
 function keyPressed() {
-  if (!cameraStarted) return;
-
-  if (key === "1") {
-    triggerSubtitle("HELLO");
-  } else if (key === "2") {
-    triggerSubtitle("YES");
-  } else if (key === "3") {
-    triggerSubtitle("LOVE");
-  }
-}
-
-function windowResized() {
-  resizeCanvas(CANVAS_W, CANVAS_H);
-  overlay = createGraphics(CANVAS_W, CANVAS_H);
-
-  if (titleText) titleText.position(24, 20);
-  if (instructionText) instructionText.position(24, 58);
-  if (statusText) statusText.position(360, 20);
-  if (startButton) startButton.position(24, 548);
-  if (clearButton) clearButton.position(140, 548);
+  if (key === "1") triggerSubtitle("HELLO");
+  if (key === "2") triggerSubtitle("YES");
+  if (key === "3") triggerSubtitle("LOVE");
 }
