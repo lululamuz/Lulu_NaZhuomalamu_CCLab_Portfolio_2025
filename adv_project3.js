@@ -65,6 +65,31 @@ async function loadModel() {
     const modelURLFile = modelURL + "model.json";
     const metadataURL = modelURL + "metadata.json";
 
+    console.log("Trying:", modelURLFile);
+    console.log("Trying:", metadataURL);
+
+    model = await tmImage.load(modelURLFile, metadataURL);
+
+    modelLoaded = true;
+    statusText.html("Status: Ready");
+
+    predictLoop();
+
+  } catch (e) {
+    console.error("MODEL ERROR:", e);
+
+    // ⭐️ 不要卡死，直接 fallback
+    statusText.html("Status: Model failed (use keyboard)");
+
+    modelLoaded = false;
+  }
+}
+  try {
+    statusText.html("Status: Loading model...");
+
+    const modelURLFile = modelURL + "model.json";
+    const metadataURL = modelURL + "metadata.json";
+
     model = await tmImage.load(modelURLFile, metadataURL);
 
     statusText.html("Status: Ready");
