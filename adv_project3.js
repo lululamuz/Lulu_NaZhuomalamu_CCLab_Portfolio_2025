@@ -121,6 +121,26 @@ function styleButton(btn) {
 async function startCamera() {
   if (cameraStarted) return;
 
+  try {
+    currentStatus = "Starting camera...";
+    updateStatus();
+
+    video = createCapture(VIDEO, () => {
+      currentStatus = "Camera on";
+      updateStatus();
+      cameraStarted = true;
+    });
+
+    video.size(320, 240);
+    video.hide();
+
+  } catch (error) {
+    console.error(error);
+    currentStatus = "Camera error";
+    updateStatus();
+  }
+}
+
   currentStatus = "Loading model...";
   updateStatus();
 
