@@ -370,3 +370,21 @@ body {
 .real-button {
   cursor: pointer;
 }
+
+/* 强制覆盖字体 + 更极端视觉 */
+.project4-page .fake-options p {
+  font-family: "Times New Roman", serif !important;
+  font-size: 4rem !important;   /* 再放大 */
+  line-height: 1.1;
+
+  transform: scaleX(1.35) !important; /* 更拉长 */
+  transform-origin: left;
+
+  margin: 10px 0;
+}
+
+/* 让整体更像你reference（贴左） */
+.project4-page .fake-options {
+  margin-top: 80px;
+  text-align: left;
+}
