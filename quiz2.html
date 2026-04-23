@@ -3,20 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quiz Questions</title>
+  <title>Question 1</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="project4-page">
   <main id="content">
-    <h1>Question Page</h1>
-    <p id="nameTest"></p>
+
+    <h1 id="questionTitle"></h1>
+
+    <p class="question-text">
+      To what degree do you wait for the “right moment” to begin?
+    </p>
+
+    <!-- slider -->
+    <input 
+      type="range" 
+      id="slider" 
+      min="0" 
+      max="100" 
+      value="50"
+    />
+
+    <!-- value text -->
+    <p id="sliderValue"></p>
+
+    <!-- reflection -->
+    <p id="reflection"></p>
+
+    <!-- next -->
+    <button id="nextBtn">continue</button>
+
   </main>
 
   <script>
     const name = localStorage.getItem("userName") || "you";
-    document.getElementById("nameTest").textContent = 
-      name + ", your name is saved.";
+
+    // 显示标题
+    document.getElementById("questionTitle").textContent =
+      name + ", let’s start.";
+
+    const slider = document.getElementById("slider");
+    const sliderValue = document.getElementById("sliderValue");
+    const reflection = document.getElementById("reflection");
+
+    function updateUI() {
+      const value = slider.value;
+
+      sliderValue.textContent = "level: " + value;
+
+      if (value < 30) {
+        reflection.textContent =
+          name + ", you seem comfortable starting without waiting.";
+      } else if (value < 70) {
+        reflection.textContent =
+          name + ", sometimes you wait, sometimes you don’t.";
+      } else {
+        reflection.textContent =
+          name + ", maybe you’re not waiting for the right moment… maybe you’re avoiding starting.";
+      }
+    }
+
+    slider.addEventListener("input", updateUI);
+
+    updateUI();
+
+    document.getElementById("nextBtn").addEventListener("click", function () {
+  localStorage.setItem("q1_rightMoment", slider.value);
+  window.location.href = "quiz3.html";
+});
   </script>
 </body>
 </html>
