@@ -343,24 +343,30 @@ body {
   cursor: pointer;
 }
 
-/* ===== Fake Options (reference style) ===== */
+/* ===== CLICK TYPO STYLE (reference-based) ===== */
+.fake-options {
+  margin-top: 60px;
+}
+
 .fake-options p {
-  font-size: 1.6rem;
+  font-family: "Times New Roman", serif;
+  font-size: 3rem;              /* 放大很多 */
   color: #1e3a8a;
   text-decoration: underline;
-  margin: 10px 0;
-  cursor: default; /* 防止误导点击 */
+  margin: 18px 0;
+
+  transform: scaleX(1.2);       /* 横向拉长！！核心 */
+  transform-origin: left;
+
+  letter-spacing: 0.02em;
 }
 
-/* ===== Real Button ===== */
+/* hover 微妙变化 */
+.fake-options p:hover {
+  opacity: 0.7;
+}
+
+/* 只有最后一行能点击 */
 .real-button {
-  display: inline-block;
-  margin-top: 40px;
-  font-size: 1.8rem;
-  color: #1e3a8a;
-  text-decoration: underline;
-}
-
-.real-button:hover {
-  opacity: 0.6;
+  cursor: pointer;
 }
