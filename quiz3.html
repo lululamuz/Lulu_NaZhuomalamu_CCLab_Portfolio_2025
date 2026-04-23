@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Question 2</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="project4-page">
+  <main id="content">
+
+    <h1 id="questionTitle"></h1>
+
+    <p class="question-text">
+      How uncomfortable are you with starting something imperfectly?
+    </p>
+
+    <input 
+      type="range" 
+      id="slider" 
+      min="0" 
+      max="100" 
+      value="50"
+    />
+
+    <p id="sliderValue"></p>
+
+    <p id="reflection"></p>
+
+    <button id="nextBtn">continue</button>
+
+  </main>
+
+  <script>
+    const name = localStorage.getItem("userName") || "you";
+
+    document.getElementById("questionTitle").textContent =
+      name + ", be honest.";
+
+    const slider = document.getElementById("slider");
+    const sliderValue = document.getElementById("sliderValue");
+    const reflection = document.getElementById("reflection");
+
+    function updateUI() {
+      const value = slider.value;
+
+      sliderValue.textContent = "level: " + value;
+
+      if (value < 30) {
+        reflection.textContent =
+          name + ", you seem willing to let things begin messy.";
+      } else if (value < 70) {
+        reflection.textContent =
+          name + ", you can start imperfectly, but it still bothers you.";
+      } else {
+        reflection.textContent =
+          name + ", maybe perfection is not your standard. Maybe it is your excuse to wait.";
+      }
+    }
+
+    slider.addEventListener("input", updateUI);
+    updateUI();
+
+    document.getElementById("nextBtn").addEventListener("click", function () {
+      localStorage.setItem("q2_imperfectStart", slider.value);
+      window.location.href = "quiz4.html";
+    });
+  </script>
+</body>
+</html>
