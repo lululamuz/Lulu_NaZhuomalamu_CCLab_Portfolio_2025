@@ -1,9 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Quiz 1</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>This Will Only Take a Minute</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <h1>Question 1</h1>
+
+<body class="project4-page">
+  <main id="content">
+
+    <nav class="top-nav">
+      <ul>
+        <li><a href="adv_project4.html">Back</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
+      </ul>
+    </nav>
+
+    <section class="name-section">
+      <h1>This Will Only Take a Minute</h1>
+
+      <p class="name-question">
+        Before we begin, what should we call you…?
+      </p>
+
+      <input 
+        type="text" 
+        id="userName" 
+        class="name-input" 
+        placeholder="type your name here"
+      />
+
+      <button id="saveName" class="continue-button">
+        continue
+      </button>
+    </section>
+
+  </main>
+
+  <script>
+    const saveButton = document.getElementById("saveName");
+    const nameInput = document.getElementById("userName");
+
+    saveButton.addEventListener("click", function () {
+      const name = nameInput.value.trim();
+
+      if (name) {
+        localStorage.setItem("userName", name);
+      } else {
+        localStorage.setItem("userName", "you");
+      }
+
+      window.location.href = "quiz2.html";
+    });
+  </script>
 </body>
 </html>
