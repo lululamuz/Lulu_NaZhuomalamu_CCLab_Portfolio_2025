@@ -335,3 +335,8 @@ body {
 .project4-page {
   cursor: url("cursorcat.png") 16 16, auto;
 }
+
+.project4-page a,
+.project4-page button {
+  cursor: pointer;
+}
