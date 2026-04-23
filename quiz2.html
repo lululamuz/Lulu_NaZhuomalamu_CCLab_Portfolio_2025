@@ -72,11 +72,14 @@
     slider.addEventListener("input", updateUI);
 
     updateUI();
-
     document.getElementById("nextBtn").addEventListener("click", function () {
   localStorage.setItem("q1_rightMoment", slider.value);
   window.location.href = "quiz3.html";
 });
+
+// 第一题没有上一页，可以隐藏
+document.getElementById("prevBtn").style.display = "none";
+
   </script>
 </body>
 </html>
