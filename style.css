@@ -332,59 +332,44 @@ body {
 }
 
 /* ===== Project 4 Cursor ===== */
-/* ===== Project 4 Cursor (FINAL FIXED) ===== */
 .project4-page {
   cursor: url("cursorcat.png") 16 16, auto;
 }
 
-/* 保证链接和按钮可以正常点击 */
 .project4-page a,
 .project4-page button {
   cursor: pointer;
 }
 
-/* ===== CLICK TYPO STYLE (reference-based) ===== */
-.fake-options {
-  margin-top: 60px;
+/* ===== Project 4 Click Style ===== */
+.project4-page .click-options {
+  margin-top: 45px;
+  width: fit-content;
 }
 
-.fake-options p {
-  font-family: "Times New Roman", serif;
-  font-size: 3rem;              /* 放大很多 */
-  color: #1e3a8a;
+.project4-page .click-options p,
+.project4-page .click-options a {
+  display: block;
+  font-family: "Times New Roman", Times, serif !important;
+  font-size: 4.6rem !important;
+  line-height: 0.95;
+  color: #1e3a8a !important;
   text-decoration: underline;
-  margin: 18px 0;
-
-  transform: scaleX(1.2);       /* 横向拉长！！核心 */
-  transform-origin: left;
-
-  letter-spacing: 0.02em;
+  margin: 8px 0;
+  transform: scaleX(1.28);
+  transform-origin: left center;
+  letter-spacing: -0.04em;
 }
 
-/* hover 微妙变化 */
-.fake-options p:hover {
-  opacity: 0.7;
+.project4-page .click-options p {
+  cursor: default;
 }
 
-/* 只有最后一行能点击 */
-.real-button {
+.project4-page .click-options a {
   cursor: pointer;
 }
 
-/* 强制覆盖字体 + 更极端视觉 */
-.project4-page .fake-options p {
-  font-family: "Times New Roman", serif !important;
-  font-size: 4rem !important;   /* 再放大 */
-  line-height: 1.1;
-
-  transform: scaleX(1.35) !important; /* 更拉长 */
-  transform-origin: left;
-
-  margin: 10px 0;
-}
-
-/* 让整体更像你reference（贴左） */
-.project4-page .fake-options {
-  margin-top: 80px;
-  text-align: left;
+.project4-page .click-options p:hover,
+.project4-page .click-options a:hover {
+  opacity: 0.7;
 }
