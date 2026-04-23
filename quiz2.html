@@ -10,76 +10,63 @@
 <body class="project4-page">
   <main id="content">
 
-    <h1 id="questionTitle"></h1>
+    <h1>Question 1 / 8</h1>
 
     <p class="question-text">
       To what degree do you wait for the “right moment” to begin?
     </p>
 
-    <!-- slider -->
-    <input 
-      type="range" 
-      id="slider" 
-      min="0" 
-      max="100" 
-      value="50"
-    />
+    <input type="range" id="slider" min="0" max="100" value="50" />
 
-    <!-- value text -->
     <p id="sliderValue"></p>
-
-    <!-- reflection -->
     <p id="reflection"></p>
 
-    <!-- next -->
-    <button id="nextBtn">continue</button>
-
     <div class="quiz-nav">
-  <button id="prevBtn">←</button>
-  <button id="nextBtn">→</button>
-</div>
+      <button id="prevBtn">←</button>
+      <button id="nextBtn">→</button>
+    </div>
 
   </main>
 
   <script>
     const name = localStorage.getItem("userName") || "you";
 
-    // 显示标题
-    document.getElementById("questionTitle").textContent =
-      name + ", let’s start.";
-
     const slider = document.getElementById("slider");
     const sliderValue = document.getElementById("sliderValue");
     const reflection = document.getElementById("reflection");
 
+    function getLabel(value) {
+      if (value < 20) return "Strongly disagree";
+      if (value < 40) return "Disagree";
+      if (value < 60) return "Neutral";
+      if (value < 80) return "Agree";
+      return "Strongly agree";
+    }
+
     function updateUI() {
-      const value = slider.value;
+      const value = Number(slider.value);
+      sliderValue.textContent = ": " + getLabel(value);
 
-      sliderValue.textContent = "level: " + value;
-
-      if (value < 30) {
-        reflection.textContent =
-          name + ", you seem comfortable starting without waiting.";
+      if (value < 40) {
+        reflection.textContent = name + ", you seem comfortable starting without waiting.";
       } else if (value < 70) {
-        reflection.textContent =
-          name + ", sometimes you wait, sometimes you don’t.";
+        reflection.textContent = name + ", sometimes you wait, sometimes you begin.";
       } else {
-        reflection.textContent =
-          name + ", maybe you’re not waiting for the right moment… maybe you’re avoiding starting.";
+        reflection.textContent = name + ", maybe you are not waiting for the right moment. Maybe you are avoiding the first imperfect step.";
       }
     }
 
     slider.addEventListener("input", updateUI);
-
     updateUI();
+
+    document.getElementById("prevBtn").addEventListener("click", function () {
+      window.location.href = "quiz1.html";
+    });
+
     document.getElementById("nextBtn").addEventListener("click", function () {
-  localStorage.setItem("q1_rightMoment", slider.value);
-  window.location.href = "quiz3.html";
-});
-
-// 第一题没有上一页，可以隐藏
-document.getElementById("prevBtn").style.display = "none";
-
+      localStorage.setItem("q1_rightMoment", slider.value);
+      window.location.href = "quiz3.html";
+    });
   </script>
 </body>
 </html>
