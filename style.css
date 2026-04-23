@@ -332,8 +332,6 @@ body {
 }
 
 /* ===== Project 4 Cursor ===== */
-.project4-page,
-.project4-page a,
-.project4-page button {
+.project4-page {
   cursor: url("cursorcat.png") 16 16, auto;
 }
