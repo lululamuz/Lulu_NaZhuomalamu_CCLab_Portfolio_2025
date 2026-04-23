@@ -342,3 +342,25 @@ body {
 .project4-page button {
   cursor: pointer;
 }
+
+/* ===== Fake Options (reference style) ===== */
+.fake-options p {
+  font-size: 1.6rem;
+  color: #1e3a8a;
+  text-decoration: underline;
+  margin: 10px 0;
+  cursor: default; /* 防止误导点击 */
+}
+
+/* ===== Real Button ===== */
+.real-button {
+  display: inline-block;
+  margin-top: 40px;
+  font-size: 1.8rem;
+  color: #1e3a8a;
+  text-decoration: underline;
+}
+
+.real-button:hover {
+  opacity: 0.6;
+}
