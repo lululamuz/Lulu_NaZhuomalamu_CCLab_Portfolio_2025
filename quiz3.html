@@ -65,11 +65,15 @@
 
     slider.addEventListener("input", updateUI);
     updateUI();
-
     document.getElementById("nextBtn").addEventListener("click", function () {
-      localStorage.setItem("q2_imperfectStart", slider.value);
-      window.location.href = "quiz4.html";
-    });
+  localStorage.setItem("q2_imperfectStart", slider.value);
+  window.location.href = "quiz4.html";
+});
+
+document.getElementById("prevBtn").addEventListener("click", function () {
+  window.location.href = "quiz2.html";
+});
+
   </script>
 </body>
 </html>
