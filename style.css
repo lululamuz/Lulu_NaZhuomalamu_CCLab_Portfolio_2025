@@ -332,6 +332,13 @@ body {
 }
 
 /* ===== Project 4 Cursor ===== */
+/* ===== Project 4 Cursor (FINAL FIXED) ===== */
 .project4-page {
-  cursor: url("cursorcat.png") 0 0, auto;
+  cursor: url("cursorcat.png") 16 16, auto;
+}
+
+/* 保证链接和按钮可以正常点击 */
+.project4-page a,
+.project4-page button {
+  cursor: pointer;
 }
