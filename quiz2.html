@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Questions</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="project4-page">
+  <main id="content">
+    <h1>Question Page</h1>
+    <p id="nameTest"></p>
+  </main>
+
+  <script>
+    const name = localStorage.getItem("userName") || "you";
+    document.getElementById("nameTest").textContent = 
+      name + ", your name is saved.";
+  </script>
+</body>
+</html>
