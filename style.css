@@ -387,7 +387,7 @@ body {
   border: none;
   font-family: "Times New Roman", Times, serif;
   font-size: 3rem;
-  color: #1e3a8a;
+  color: red;   /* ← 就改这里 */
   cursor: pointer;
   line-height: 1;
 }
