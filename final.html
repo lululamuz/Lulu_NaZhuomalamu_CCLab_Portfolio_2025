@@ -3,22 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Result</title>
+  <title>End</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="project4-page">
   <main id="content">
 
-    <p id="finalText"></p>
+    <div class="final-text">
+      <p>There's no result.</p>
+
+      <p>But you stayed.<br>You answered.</p>
+
+      <p>
+        If you came here while avoiding something,<br>
+        the quiz did not reveal your procrastination.
+      </p>
+
+      <p>It became part of it.</p>
+
+      <p class="final-action">
+        Close this tab.<br>
+        Start messy.<br>
+        Begin anyway.
+      </p>
+    </div>
+
+    <!-- 退出按钮 -->
+    <button id="exitBtn" class="exit-button">exit</button>
 
   </main>
 
 <script>
-  const name = localStorage.getItem("userName") || "you";
-
-  document.getElementById("finalText").textContent =
-    name + ", maybe it's not the task. maybe it's how you begin.";
+  document.getElementById("exitBtn").addEventListener("click", function () {
+    window.close();
+  });
 </script>
+
 </body>
 </html>
