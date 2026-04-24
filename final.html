@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Result</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="project4-page">
+  <main id="content">
+
+    <p id="finalText"></p>
+
+  </main>
+
+<script>
+  const name = localStorage.getItem("userName") || "you";
+
+  document.getElementById("finalText").textContent =
+    name + ", maybe it's not the task. maybe it's how you begin.";
+</script>
+</body>
+</html>
