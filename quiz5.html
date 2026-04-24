@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Question 4</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="project4-page">
+  <main id="content">
+
+    <h1>Question 4 / 8</h1>
+
+    <p class="question-text">
+      How often do you delay because you don’t know where to begin?
+    </p>
+
+    <input type="range" id="slider" min="0" max="100" value="50" />
+
+    <p id="sliderValue"></p>
+
+    <div class="quiz-nav">
+      <button id="prevBtn">←</button>
+      <button id="nextBtn">→</button>
+    </div>
+
+  </main>
+
+<script>
+  const slider = document.getElementById("slider");
+  const sliderValue = document.getElementById("sliderValue");
+
+  function getLabel(value) {
+    if (value < 20) return "Strongly disagree";
+    if (value < 40) return "Disagree";
+    if (value < 60) return "Neutral";
+    if (value < 80) return "Agree";
+    return "Strongly agree";
+  }
+
+  function updateUI() {
+    const value = Number(slider.value);
+    sliderValue.textContent = getLabel(value);
+  }
+
+  slider.addEventListener("input", updateUI);
+  updateUI();
+
+  document.getElementById("prevBtn").addEventListener("click", function () {
+    window.location.href = "quiz4.html";
+  });
+
+  document.getElementById("nextBtn").addEventListener("click", function () {
+    localStorage.setItem("q4_whereToBegin", slider.value);
+    window.location.href = "quiz6.html";
+  });
+</script>
+</body>
+</html>
